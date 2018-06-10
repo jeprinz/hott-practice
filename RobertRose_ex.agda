@@ -106,7 +106,6 @@ module Ex3 {i j} {X : Set i} {Y : Set j} where
 
   -- Ex1.f does x -> (x , (x , refl))
 
-
 {- For any f : X → Y, you also get a factorization through
            Σ X (λ x → Σ Y (λ y → f x == y))
    which corresponds to the inverse images glued back together to
