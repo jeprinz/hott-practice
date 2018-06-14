@@ -13,6 +13,11 @@ module _ {i j} {X : Set i} {P : X → Set j} where
   _~_ : (f g : (x : X) → P x) → Set (i ⊔ j)
   f ~ g = (x : X) → f x ≡ g x
 
+  hinv : {f g : (x : X) → P x} → f ~ g → g ~ f
+  hinv homo x = sym (homo x)
+
+
+
 module _ {i j} {A : Set i} {B : Set j} where --define an equivalence between types
   isequiv : (f : A → B) → Set (i ⊔ j)
   isequiv f = (Σ (B → A) (λ g → f ∘ g ~ id)) × (Σ (B → A) (λ h → h ∘ f ~ id))
@@ -34,10 +39,29 @@ module Lemma2412 {A B C : Set} where
   parti = (idA , ((idA , lemma1) , (idA , lemma1)))
   --      (f   , ((g   , proof)  , (h   ,  proof)))
 
+  lemma2 : (f : A → B) → (g : B → A) → f ∘ g ~ id → g ∘ f ~ id
+  lemma2 f g homo x = {!   !}
+
   partii : A ≃ B → B ≃ A
-  partii (f , ((g , proofg) , (h , proofh))) = {!   !}
+  partii (f , ((g , proofg) , (h , proofh))) = (g , ((f , (λ x → {!   !})) , (f , proofg)))
 
 -- again from robert rose code
 module _ {i j} {A : Set i} {P : A → Set j} {- I would leave P explicit -} where
   transport : {x y : A} → (p : x ≡ y) → P(x) → P(y)
   transport refl Px = Px
+data 𝟙 : Set where
+  ⋆ : 𝟙
+
+
+
+module _ (A B : Set) where
+  f : A ≡ B → 𝟙
+  f refl = ⋆
+  finv : 𝟙 → A ≡ B
+  finv ⋆ = {!   !}
+
+  idequiv : A ≡ B ≃ 𝟙
+  idequiv = {!   !}
+
+fun : {A B : Set} → (p : A ≡ B) → p ≡ refl -- think about this
+fun = ?
