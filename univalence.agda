@@ -16,6 +16,9 @@ module _ {i j} {X : Set i} {P : X → Set j} where
   hinv : {f g : (x : X) → P x} → f ~ g → g ~ f
   hinv homo x = sym (homo x)
 
+  fequal : {f g : (x : X) → P x} → f ≡ g → f ~ g
+  fequal refl x = refl
+
 
 
 module _ {i j} {A : Set i} {B : Set j} where --define an equivalence between types
@@ -39,11 +42,11 @@ module Lemma2412 {A B C : Set} where
   parti = (idA , ((idA , lemma1) , (idA , lemma1)))
   --      (f   , ((g   , proof)  , (h   ,  proof)))
 
-  lemma2 : (f : A → B) → (g : B → A) → f ∘ g ~ id → g ∘ f ~ id
-  lemma2 f g homo x = {!   !}
+  -- lemma2 : (f : A → B) → (g : B → A) → f ∘ g ~ id → g ∘ f ~ id
+  -- lemma2 f g homo x = {!   !}
 
-  partii : A ≃ B → B ≃ A
-  partii (f , ((g , proofg) , (h , proofh))) = (g , ((f , (λ x → {!   !})) , (f , proofg)))
+  -- partii : A ≃ B → B ≃ A
+  -- partii (f , ((g , proofg) , (h , proofh))) = (g , ((f , (λ x → {!   !})) , (f , proofg)))
 
 -- again from robert rose code
 module _ {i j} {A : Set i} {P : A → Set j} {- I would leave P explicit -} where
@@ -54,14 +57,14 @@ data 𝟙 : Set where
 
 
 
-module _ (A B : Set) where
-  f : A ≡ B → 𝟙
-  f refl = ⋆
-  finv : 𝟙 → A ≡ B
-  finv ⋆ = {!   !}
+-- module _ (A B : Set) where
+  -- f : A ≡ B → 𝟙
+  -- f refl = ⋆
+  -- finv : 𝟙 → A ≡ B
+  -- finv ⋆ = {!   !}
+--
+  -- idequiv : A ≡ B ≃ 𝟙
+  -- idequiv = {!   !}
 
-  idequiv : A ≡ B ≃ 𝟙
-  idequiv = {!   !}
-
-fun : {A B : Set} → (p : A ≡ B) → p ≡ refl -- think about this
-fun = ?
+-- fun : {A B : Set} → (p : A ≡ B) → p ≡ refl -- think about this
+-- fun = ?
